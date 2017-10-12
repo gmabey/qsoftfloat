@@ -1,4 +1,7 @@
-TARGET = qtsoftfloat
+#TARGET = qtsoftfloat
+TEMPLATE = lib
+
+QT = core
 
 CONFIG += \
     static \
@@ -6,13 +9,19 @@ CONFIG += \
     exceptions_off rtti_off warn_off
 #    installed
 
-MODULE_INCLUDEPATH = $$PWD $$PWD/8086-SSE $$PWD/include
-MODULE_DEFINES = SOFTFLOAT_FAST_INT64 SOFTFLOAT_ROUND_ODD INLINE_LEVEL=5 SOFTFLOAT_FAST_DIV32TO16 SOFTFLOAT_FAST_DIV64TO32
+SF = SoftFloat-3c
+SF_BLD = $$SF/build
+SF_SRC = $$SF/source
 
-load(qt_helper_lib)
+INCLUDEPATH = $$PWD/$$SF_BLD/Linux-x86_64-GCC $$PWD/$$SF_SRC/8086-SSE $$PWD/$$SF_SRC/include
+DEFINES += SOFTFLOAT_FAST_INT64 SOFTFLOAT_ROUND_ODD INLINE_LEVEL=5 SOFTFLOAT_FAST_DIV32TO16 SOFTFLOAT_FAST_DIV64TO32
+DEFINES += LITTLEENDIAN=1  # FIXME for big endian platforms
 
-TR_EXCLUDE += $$PWD/*
-#DEFINES += PNG_ARM_NEON_OPT=0
+OBJECTS_DIR = .obj
+
+VPATH = $$SF_SRC
+
+SOURCES += qfloat80.cpp qfloat128.cpp
 
 SOURCES += \
   s_eq128.c \
