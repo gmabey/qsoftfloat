@@ -1,0 +1,28 @@
+diff -r -c ../SoftFloat-3c/source/include/softfloat.h SoftFloat-3c/source/include/softfloat.h
+*** ../SoftFloat-3c/source/include/softfloat.h	2017-01-03 16:14:40.000000000 +0000
+--- SoftFloat-3c/source/include/softfloat.h	2017-10-12 01:09:59.590174089 +0000
+***************
+*** 46,51 ****
+--- 46,55 ----
+  #ifndef softfloat_h
+  #define softfloat_h 1
+  
++ #ifdef __cplusplus
++ extern "C" {
++ #endif
++ 
+  #include <stdbool.h>
+  #include <stdint.h>
+  #include "softfloat_types.h"
+***************
+*** 368,372 ****
+--- 372,380 ----
+  bool f128M_lt_quiet( const float128_t *, const float128_t * );
+  bool f128M_isSignalingNaN( const float128_t * );
+  
++ #ifdef __cplusplus
++ }  /* end extern "C" */
++ #endif
++ 
+  #endif
+  
