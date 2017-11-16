@@ -10,6 +10,10 @@
 *.dll
 *.dylib
 
+.obj
+debug/
+release/
+
 # Qt-es
 
 /.qmake.cache
@@ -23,7 +27,7 @@ moc_*.cpp
 moc_*.h
 qrc_*.cpp
 ui_*.h
-Makefile*
+/Makefile*
 *build-*
 
 # QtCreator

@@ -46,10 +46,6 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef softfloat_h
 #define softfloat_h 1
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stdbool.h>
 #include <stdint.h>
 #include "softfloat_types.h"
@@ -371,10 +367,6 @@ bool f128M_eq_signaling( const float128_t *, const float128_t * );
 bool f128M_le_quiet( const float128_t *, const float128_t * );
 bool f128M_lt_quiet( const float128_t *, const float128_t * );
 bool f128M_isSignalingNaN( const float128_t * );
-
-#ifdef __cplusplus
-}  /* end extern "C" */
-#endif
 
 #endif
 

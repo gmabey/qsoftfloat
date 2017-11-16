@@ -13,9 +13,10 @@ SF = SoftFloat-3c
 SF_BLD = $$SF/build
 SF_SRC = $$SF/source
 
-INCLUDEPATH = $$PWD/$$SF_BLD/Linux-x86_64-GCC $$PWD/$$SF_SRC/8086-SSE $$PWD/$$SF_SRC/include
+SPECIALIZE_TYPE = 8086-SSE
+
+INCLUDEPATH = $$PWD/$$SF_SRC/$$SPECIALIZE_TYPE $$PWD/$$SF_SRC/include
 DEFINES += SOFTFLOAT_FAST_INT64 SOFTFLOAT_ROUND_ODD INLINE_LEVEL=5 SOFTFLOAT_FAST_DIV32TO16 SOFTFLOAT_FAST_DIV64TO32
-DEFINES += LITTLEENDIAN=1  # FIXME for big endian platforms
 
 OBJECTS_DIR = .obj
 
@@ -23,7 +24,7 @@ VPATH = $$SF_SRC
 
 SOURCES += qfloat80.cpp qfloat128.cpp
 
-SOURCES += \
+OBJS_PRIMITIVES = \
   s_eq128.c \
   s_le128.c \
   s_lt128.c \
@@ -55,24 +56,28 @@ SOURCES += \
   s_approxRecip32_1.c \
   s_approxRecipSqrt_1Ks.c \
   s_approxRecipSqrt32_1.c \
-  8086-SSE/softfloat_raiseFlags.c \
-  8086-SSE/s_f16UIToCommonNaN.c \
-  8086-SSE/s_commonNaNToF16UI.c \
-  8086-SSE/s_propagateNaNF16UI.c \
-  8086-SSE/s_f32UIToCommonNaN.c \
-  8086-SSE/s_commonNaNToF32UI.c \
-  8086-SSE/s_propagateNaNF32UI.c \
-  8086-SSE/s_f64UIToCommonNaN.c \
-  8086-SSE/s_commonNaNToF64UI.c \
-  8086-SSE/s_propagateNaNF64UI.c \
-  8086-SSE/extF80M_isSignalingNaN.c \
-  8086-SSE/s_extF80UIToCommonNaN.c \
-  8086-SSE/s_commonNaNToExtF80UI.c \
-  8086-SSE/s_propagateNaNExtF80UI.c \
-  8086-SSE/f128M_isSignalingNaN.c \
-  8086-SSE/s_f128UIToCommonNaN.c \
-  8086-SSE/s_commonNaNToF128UI.c \
-  8086-SSE/s_propagateNaNF128UI.c \
+
+OBJS_SPECIALIZE = \
+  $$SPECIALIZE_TYPE/softfloat_raiseFlags.c \
+  $$SPECIALIZE_TYPE/s_f16UIToCommonNaN.c \
+  $$SPECIALIZE_TYPE/s_commonNaNToF16UI.c \
+  $$SPECIALIZE_TYPE/s_propagateNaNF16UI.c \
+  $$SPECIALIZE_TYPE/s_f32UIToCommonNaN.c \
+  $$SPECIALIZE_TYPE/s_commonNaNToF32UI.c \
+  $$SPECIALIZE_TYPE/s_propagateNaNF32UI.c \
+  $$SPECIALIZE_TYPE/s_f64UIToCommonNaN.c \
+  $$SPECIALIZE_TYPE/s_commonNaNToF64UI.c \
+  $$SPECIALIZE_TYPE/s_propagateNaNF64UI.c \
+  $$SPECIALIZE_TYPE/extF80M_isSignalingNaN.c \
+  $$SPECIALIZE_TYPE/s_extF80UIToCommonNaN.c \
+  $$SPECIALIZE_TYPE/s_commonNaNToExtF80UI.c \
+  $$SPECIALIZE_TYPE/s_propagateNaNExtF80UI.c \
+  $$SPECIALIZE_TYPE/f128M_isSignalingNaN.c \
+  $$SPECIALIZE_TYPE/s_f128UIToCommonNaN.c \
+  $$SPECIALIZE_TYPE/s_commonNaNToF128UI.c \
+  $$SPECIALIZE_TYPE/s_propagateNaNF128UI.c
+
+OBJS_OTHERS = \
   s_roundToUI32.c \
   s_roundToUI64.c \
   s_roundToI32.c \
@@ -326,3 +331,5 @@ SOURCES += \
   f128M_eq_signaling.c \
   f128M_le_quiet.c \
   f128M_lt_quiet.c
+
+SOURCES += $$OBJS_PRIMITIVES $$OBJS_SPECIALIZE $$OBJS_OTHERS
