@@ -1,5 +1,6 @@
 #TARGET = qtsoftfloat
 TEMPLATE = lib
+CONFIG += staticlib
 
 QT = core
 
@@ -333,3 +334,8 @@ OBJS_OTHERS = \
   f128M_lt_quiet.c
 
 SOURCES += $$OBJS_PRIMITIVES $$OBJS_SPECIALIZE $$OBJS_OTHERS
+
+win32 {
+    target.path = $$PWD
+    INSTALLS += target
+}
