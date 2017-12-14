@@ -4,6 +4,8 @@
 **
 ****************************************************************************/
 
+#include "platform.h"
+
 #ifdef __cplusplus
   extern "C" {
     #include "softfloat.h"

@@ -1,0 +1,13 @@
+
+#ifndef QSOFTFLOAT_PLATFORM_H
+#define QSOFTFLOAT_PLATFORM_H
+
+#include <QtGlobal>
+
+#if (Q_BYTE_ORDER==Q_LITTLE_ENDIAN)
+  #define LITTLEENDIAN 1
+#endif  // (Q_BYTE_ORDER==Q_LITTLE_ENDIAN)
+
+#define INLINE inline
+
+#endif  // QSOFTFLOAT_PLATFORM_H

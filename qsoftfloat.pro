@@ -1,14 +1,7 @@
-#TARGET = qtsoftfloat
 TEMPLATE = lib
 CONFIG += staticlib
 
 QT = core
-
-#CONFIG += \
-#    static \
-#    hide_symbols \
-#    exceptions_off rtti_off warn_off
-##    installed
 
 SF = SoftFloat-3c
 SF_BLD = $$SF/build
