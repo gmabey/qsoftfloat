@@ -4,11 +4,11 @@ CONFIG += staticlib
 
 QT = core
 
-CONFIG += \
-    static \
-    hide_symbols \
-    exceptions_off rtti_off warn_off
-#    installed
+#CONFIG += \
+#    static \
+#    hide_symbols \
+#    exceptions_off rtti_off warn_off
+##    installed
 
 SF = SoftFloat-3c
 SF_BLD = $$SF/build
@@ -16,8 +16,8 @@ SF_SRC = $$SF/source
 
 SPECIALIZE_TYPE = 8086-SSE
 
-INCLUDEPATH = qt_platform $$SF_SRC/$$SPECIALIZE_TYPE $$SF_SRC/include
-DEFINES += SOFTFLOAT_FAST_INT64 SOFTFLOAT_ROUND_ODD INLINE_LEVEL=5 SOFTFLOAT_FAST_DIV32TO16 SOFTFLOAT_FAST_DIV64TO32
+INCLUDEPATH = include qt_platform $$SF_SRC/$$SPECIALIZE_TYPE $$SF_SRC/include
+include(qsoftfloatdefines.pri)
 
 OBJECTS_DIR = .obj
 

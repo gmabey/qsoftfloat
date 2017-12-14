@@ -4,7 +4,7 @@
 **
 ****************************************************************************/
 
-#include "softfloat.h"
+#include "qsoftfloat.h"
 #include <qfloat80.h>
 #include <string.h>
 
